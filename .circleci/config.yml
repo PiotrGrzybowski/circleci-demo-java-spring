@@ -21,17 +21,15 @@ jobs:
           name: Login to DockerHub
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-      - restore_cache:
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+#      - restore_cache:
+#          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
       
       - run: mvn dependency:go-offline
       
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-      
-      - run: mvn package
+#      - save_cache:
+#          paths:
+#            - ~/.m2
+#          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
 
       - run: mvn clean package # run the actual tests
       - run: mvn clean compile jib:build -Dimage=baitholder/demo:$CIRCLE_BUILD_NUM
