@@ -37,7 +37,7 @@ jobs:
           path: target/surefire-reports
 
       - run: mvn clean package # run the actual tests
-            - run: mvn clean compile jib:build -Dimage=baitholder/demo:$CIRCLE_BUILD_NUM
+      - run: mvn clean compile jib:build -Dimage=baitholder/demo:$CIRCLE_BUILD_NUM
 
       - store_artifacts:
           path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
